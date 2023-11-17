@@ -4,9 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_getx_base/routes/app_pages.dart';
 import 'package:flutter_getx_base/shared/constants/colors.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../shared/constants/storage.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({Key? key}) : super(key: key);
@@ -22,9 +19,7 @@ class _SplashViewState extends State<SplashView> {
     Timer(
       const Duration(seconds: 2),
       () async {
-        final prefs = await SharedPreferences.getInstance();
-        final accessToken = await prefs.getString(StorageConstants.token);
-        Get.offAllNamed(accessToken != null ? Routes.HOME : Routes.LOG_IN);
+        Get.offAllNamed(Routes.ENTRY_POINT);
       },
     );
   }

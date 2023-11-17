@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_getx_base/api/api_repository.dart';
+import 'package:flutter_getx_base/lang/language.dart';
 import 'package:flutter_getx_base/modules/main/components/tabIcon_data.dart';
 import 'package:flutter_getx_base/modules/main/tabs/tabs.dart';
 import 'package:flutter_getx_base/shared/constants/common.dart';
@@ -9,10 +11,7 @@ import 'package:flutter_getx_base/shared/widgets/common_widget.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../api/api_repository.dart';
-import '../../lang/language.dart';
-import '../../lang/translation_service.dart';
+import '../../../lang/translation_service.dart';
 
 class HomeController extends GetxController
     with GetSingleTickerProviderStateMixin {

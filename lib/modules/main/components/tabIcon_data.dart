@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class TabIconData {
   TabIconData({
@@ -7,9 +8,11 @@ class TabIconData {
     this.selectedImagePath = '',
     this.isSelected = false,
     this.animationController,
+    this.titleBottomNavigation,
   });
 
   String imagePath;
+  String? titleBottomNavigation;
   String selectedImagePath;
   bool isSelected;
   int index;
@@ -18,29 +21,33 @@ class TabIconData {
 
   static List<TabIconData> tabIconsList = <TabIconData>[
     TabIconData(
-      imagePath: 'assets/fitness_app/tab_1.png',
-      selectedImagePath: 'assets/fitness_app/tab_1s.png',
+      imagePath: 'assets/icons/ic_home.svg',
+      selectedImagePath: 'assets/icons/ic_home_bold.svg',
+      titleBottomNavigation: 'Home'.tr,
       index: 0,
       isSelected: true,
       animationController: null,
     ),
     TabIconData(
-      imagePath: 'assets/fitness_app/tab_2.png',
-      selectedImagePath: 'assets/fitness_app/tab_2s.png',
+      imagePath: 'assets/icons/ic_new_card.svg',
+      selectedImagePath: 'assets/icons/ic_new_card_bold.svg',
+      titleBottomNavigation: 'New'.tr,
       index: 1,
       isSelected: false,
       animationController: null,
     ),
     TabIconData(
-      imagePath: 'assets/fitness_app/tab_3.png',
-      selectedImagePath: 'assets/fitness_app/tab_3s.png',
+      imagePath: 'assets/icons/ic_group.svg',
+      selectedImagePath: 'assets/icons/ic_group_bold.svg',
+      titleBottomNavigation: 'Group'.tr,
       index: 2,
       isSelected: false,
       animationController: null,
     ),
     TabIconData(
-      imagePath: 'assets/fitness_app/tab_4.png',
-      selectedImagePath: 'assets/fitness_app/tab_4s.png',
+      imagePath: 'assets/icons/ic_setting.svg',
+      selectedImagePath: 'assets/icons/ic_setting_bold.svg',
+      titleBottomNavigation: 'setting'.tr,
       index: 3,
       isSelected: false,
       animationController: null,
