@@ -28,4 +28,6 @@ class ImageConstant {
   static String iconZalo = 'assets/icons/zalo_ic.svg';
 
   static String iconApple = 'assets/icons/icon_apple.svg';
+
+  static String imageScanQrCode = 'assets/icons/ic_scan.svg';
 }
