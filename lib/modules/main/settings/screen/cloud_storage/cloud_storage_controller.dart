@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 
-class SettingsController extends GetxController {
+class CloudStorageController extends GetxController {
+  //TODO: Implement CloudStorageController.
+
   @override
   void onInit() {
     super.onInit();

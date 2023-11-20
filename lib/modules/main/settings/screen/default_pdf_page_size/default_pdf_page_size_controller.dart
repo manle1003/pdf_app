@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 
-class SettingsController extends GetxController {
+class DefaultPdfPageSizeController extends GetxController {
+  //TODO: Implement DefaultPdfPageSizeController.
+
   @override
   void onInit() {
     super.onInit();

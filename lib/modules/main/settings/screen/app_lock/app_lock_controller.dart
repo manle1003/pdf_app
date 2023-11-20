@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 
-class SettingsController extends GetxController {
+class AppLockController extends GetxController {
+  //TODO: Implement AppLockController.
+
   @override
   void onInit() {
     super.onInit();

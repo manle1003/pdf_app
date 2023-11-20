@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 
-class SettingsController extends GetxController {
+class RatingController extends GetxController {
+  //TODO: Implement RatingController.
+
   @override
   void onInit() {
     super.onInit();

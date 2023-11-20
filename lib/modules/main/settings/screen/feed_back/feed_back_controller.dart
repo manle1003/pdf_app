@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 
-class SettingsController extends GetxController {
+class FeedBackController extends GetxController {
+  //TODO: Implement FeedBackController.
+
   @override
   void onInit() {
     super.onInit();

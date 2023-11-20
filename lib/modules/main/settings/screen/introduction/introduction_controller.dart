@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 
-class SettingsController extends GetxController {
+class IntroductionController extends GetxController {
+
   @override
   void onInit() {
     super.onInit();

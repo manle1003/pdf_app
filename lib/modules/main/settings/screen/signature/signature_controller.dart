@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 
-class SettingsController extends GetxController {
+class SignatureController extends GetxController {
+  //TODO: Implement SignatureController.
+
   @override
   void onInit() {
     super.onInit();
