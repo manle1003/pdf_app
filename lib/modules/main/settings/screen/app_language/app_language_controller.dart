@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 
-class SettingsController extends GetxController {
+class AppLanguageController extends GetxController {
+  //TODO: Implement AppLanguageController.
+
   @override
   void onInit() {
     super.onInit();

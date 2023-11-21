@@ -5,7 +5,7 @@ import 'package:flutter_getx_base/modules/main/components/tabIcon_data.dart';
 import 'package:flutter_getx_base/modules/main/document/document_screen.dart';
 import 'package:flutter_getx_base/modules/main/home_screen/home_controller.dart';
 import 'package:flutter_getx_base/modules/main/home_screen/home_screen.dart';
-import 'package:flutter_getx_base/modules/main/settings/settings_page.dart';
+import 'package:flutter_getx_base/modules/main/settings/settings_screen.dart';
 import 'package:flutter_getx_base/modules/main/tool/tool_screen.dart';
 import 'package:flutter_getx_base/shared/constants/colors.dart';
 import 'package:flutter_getx_base/theme/theme_helper.dart';
@@ -154,7 +154,7 @@ class _EntryPointState extends State<EntryPoint> with TickerProviderStateMixin {
                   return;
                 }
                 setState(() {
-                  tabBody = SettingsPage();
+                  tabBody = SettingsScreen();
                 });
               });
             }

@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 
-class SettingsController extends GetxController {
+class FontFamilyController extends GetxController {
+  //TODO: Implement FontFamilyController.
+
   @override
   void onInit() {
     super.onInit();
