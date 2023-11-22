@@ -28,6 +28,8 @@ class HomeController extends GetxController
   late TabController tabController;
   final prefs = Get.find<SharedPreferences>();
 
+  RxList<String> filteredDocumentList = <String>[].obs;
+  RxList<String> searchResults = <String>[].obs;
   final List<String> bottomNavSelectedIconPaths = [
     ImageConstant.iconBottomHomeBold,
     ImageConstant.iconBottomEventBold,
@@ -42,6 +44,8 @@ class HomeController extends GetxController
     ImageConstant.iconBottomProfile,
   ];
 
+  RxBool isCheckSearch = false.obs;
+
   @override
   void onInit() async {
     super.onInit();
@@ -50,6 +54,27 @@ class HomeController extends GetxController
     tabController.addListener(() {
       tabIndex = tabController.index;
     });
+  }
+
+  RxList<String> pdfList = <String>[
+    'Pdf Car',
+    'Pdf Family',
+    'Pdf document',
+    'Pdf My Dog',
+    'Pdf Document Company',
+    'Pdf Document Personal',
+    'Pdf document',
+  ].obs;
+
+  void filterListPdf(String keyword) {
+    if (keyword.isEmpty) {
+      searchResults.value = pdfList;
+    } else {
+      searchResults.value = pdfList
+          .where((pdfList) =>
+              pdfList.toLowerCase().contains(keyword.toLowerCase()))
+          .toList();
+    }
   }
 
   var _selectedLanguage = Language(1, "🇺🇸", "English", "en").obs;

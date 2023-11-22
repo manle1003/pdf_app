@@ -39,7 +39,7 @@ class TabIconData {
     TabIconData(
       imagePath: 'assets/icons/ic_group.svg',
       selectedImagePath: 'assets/icons/ic_group_bold.svg',
-      titleBottomNavigation: 'Group'.tr,
+      titleBottomNavigation: 'Tool',
       index: 2,
       isSelected: false,
       animationController: null,

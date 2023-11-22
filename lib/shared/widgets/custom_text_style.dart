@@ -518,7 +518,7 @@ class CustomTextStyles {
             ? appTheme.whiteA700
             : appTheme.black500,
         fontSize: getFontSize(
-          16,
+          18,
         ),
         fontWeight: FontWeight.w600,
       );
@@ -529,8 +529,9 @@ class CustomTextStyles {
             ? appTheme.whiteA700
             : appTheme.black500,
         fontSize: getFontSize(
-          20,
+          24,
         ),
+        fontWeight: FontWeight.w800,
       );
   static get labelBlack500Size18Fw700 =>
       theme.textTheme.labelLarge!.inter.copyWith(

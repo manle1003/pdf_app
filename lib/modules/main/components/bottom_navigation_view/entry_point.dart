@@ -102,14 +102,19 @@ class _EntryPointState extends State<EntryPoint> with TickerProviderStateMixin {
         extendBody: true,
         resizeToAvoidBottomInset: false,
         backgroundColor: appTheme.gray200,
-        body: tabBody,
-        bottomNavigationBar: bottomBar(),
+        body: Stack(
+          children: [
+            tabBody,
+            bottomBar(),
+          ],
+        ),
       ),
     );
   }
 
   Widget bottomBar() {
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
         const Expanded(
           child: SizedBox(),
