@@ -29,32 +29,6 @@ List<SettingsItemsModel> settingsItems = [
     isCheckDisplayIcon: true,
   ),
   SettingsItemsModel(
-    function: () => Get.toNamed(Routes.CLOUD_STORAGE),
-    image: Icon(Icons.cloud_outlined),
-    title: 'Cloud storage',
-    subtext: '15G free spaces',
-    iconButton: Icon(Icons.keyboard_arrow_right),
-    isCheckDisplayIcon: true,
-  ),
-  SettingsItemsModel(
-    function: () => Get.toNamed(Routes.APP_LOCK),
-    image: Icon(
-      Icons.lock_outline,
-    ),
-    title: 'App lock',
-    subtext: 'Keep safe and private',
-    iconButton: Icon(Icons.keyboard_arrow_right),
-    isCheckDisplayIcon: true,
-  ),
-  SettingsItemsModel(
-    function: () => Get.toNamed(Routes.WIFI_TRANSFER),
-    image: Icon(Icons.transform_outlined),
-    title: 'Wifi transfer',
-    subtext: 'Transfer files to and from PC',
-    iconButton: Icon(Icons.keyboard_arrow_right),
-    isCheckDisplayIcon: true,
-  ),
-  SettingsItemsModel(
     function: () => Get.toNamed(Routes.DEFAULT_PDF_PAGE_SIZE),
     image: Icon(Icons.screenshot_monitor_outlined),
     title: 'Default PDF page size',
