@@ -10,9 +10,6 @@ abstract class Routes {
   //Settings
   static const SETINGS = '/settings';
   static const INTRODUCTION = '/introduction';
-  static const CLOUD_STORAGE = '/cloud_storage';
-  static const APP_LOCK = '/app_lock';
-  static const WIFI_TRANSFER = '/wifi_transfer';
   static const DEFAULT_PDF_PAGE_SIZE = '/default_pdf_page_size';
   static const SIGNATURE = '/signature';
   static const FONT_FAMILY = '/font_family';
