@@ -18,13 +18,13 @@ class ColorConstants {
   static Color purpleRewardColor = const Color(0XFF8989D6);
   static Color yellowRewardColor = const Color(0XFFFFAD0E);
   static Color lightBlueRewardColor = const Color(0XFF5C9CE4);
-  static var primaryColor = const Color(0xff296e48);
   static var blackColor = Colors.black54;
   static Color backgroundColor = const Color(0xFFF5F5F5);
   static Color backgroundColorButtonBlue = const Color(0xFF0256D9);
   static var grey800 = Colors.grey[800];
   static Color colorDarkModeBlue = const Color(0xFF5C9CE4);
   static Color colorDarkModeDisable = const Color(0xFF262626);
+  static Color backgroundColorButtonGreen = Color(0xFF0ac775);
 
   static const Color kPrimaryColor = Color(0xFF0043AB);
   static const Color kPrimaryLightColor = Color(0xFFF1E6FF);
@@ -40,6 +40,11 @@ class ColorConstants {
   static const Color lightGreenColor = Color(0xFF94E059);
   static const Color orangeColor = Color(0xFFFF5630);
   static const Color lightBlueColor = Color(0xFF5C9CE4);
+  static const Color primaryColor = Color(0xff4568dc);
+  static const List<Color> primaryGradientColor = [
+    Color(0xff4568dc),
+    Color(0xffb06ab3),
+  ];
 }
 
 Color hexToColor(String hex) {

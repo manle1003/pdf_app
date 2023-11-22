@@ -16,7 +16,6 @@ final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 Future<void> mainCommon(AppFlavor flavor) async {
   WidgetsFlutterBinding.ensureInitialized();
-
   await Future.wait([
     DenpendencyInjection.init(),
     DenpendencyInjection.inject(flavor),

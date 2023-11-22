@@ -3,6 +3,7 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter_getx_base/app_controller.dart';
+import 'package:flutter_getx_base/modules/main/camera_screen/camera_screen.dart';
 import 'package:flutter_getx_base/modules/main/components/tabIcon_data.dart';
 import 'package:flutter_getx_base/shared/constants/colors.dart';
 import 'package:flutter_getx_base/shared/constants/image_constant.dart';
@@ -189,7 +190,12 @@ class _BottomBarViewState extends State<BottomBarView>
                           highlightColor: Colors.transparent,
                           focusColor: Colors.transparent,
                           onTap: () {
-                            openImagePicker();
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => CameraPage(),
+                              ),
+                            );
                           },
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -210,8 +216,6 @@ class _BottomBarViewState extends State<BottomBarView>
       ],
     );
   }
-
-  void openImagePicker() {}
 
   void setRemoveAllSelection(TabIconData? tabIconData) {
     if (!mounted) return;
