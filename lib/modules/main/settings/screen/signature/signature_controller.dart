@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 
 class SignatureController extends GetxController {
-  //TODO: Implement SignatureController.
 
   @override
   void onInit() {
