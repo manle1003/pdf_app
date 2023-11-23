@@ -23,6 +23,8 @@ class IntroductionContent extends StatelessWidget {
         ),
         Image.asset(
           image,
+          fit: BoxFit.cover,
+          height: 500,
         ),
       ],
     );

@@ -30,29 +30,12 @@ class _EntryPointState extends State<EntryPoint> with TickerProviderStateMixin {
   SMIBool? isMenuOpenInput;
   DateTime? currentBackPressTime;
 
-  late AnimationController _animationController;
-  late Animation<double> scaleAnimation;
-  late Animation<double> animation;
-
   Widget tabBody = Container(
     color: ColorConstants.white,
   );
 
   @override
   void initState() {
-    _animationController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 200),
-    )..addListener(
-        () {
-          setState(() {});
-        },
-      );
-    scaleAnimation = Tween<double>(begin: 1, end: 0.8).animate(CurvedAnimation(
-        parent: _animationController, curve: Curves.fastOutSlowIn));
-    animation = Tween<double>(begin: 0, end: 1).animate(CurvedAnimation(
-        parent: _animationController, curve: Curves.fastOutSlowIn));
-
     tabIconsList.forEach((TabIconData tab) {
       tab.isSelected = false;
     });
@@ -67,7 +50,6 @@ class _EntryPointState extends State<EntryPoint> with TickerProviderStateMixin {
 
   @override
   void dispose() {
-    _animationController.dispose();
     animationController?.dispose();
     super.dispose();
   }
