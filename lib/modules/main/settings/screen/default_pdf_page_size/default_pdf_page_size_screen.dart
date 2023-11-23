@@ -1,6 +1,7 @@
 // ignore_for_file: invalid_use_of_protected_member
 
 import 'package:flutter/material.dart';
+import 'package:flutter_getx_base/lang/constants_common.dart';
 import 'package:flutter_getx_base/modules/main/settings/screen/introduction/components/default_button.dart';
 import 'package:get/get.dart';
 import 'default_pdf_page_size_controller.dart';
@@ -13,7 +14,9 @@ class DefaultPdfPageSizeScreen extends GetView<DefaultPdfPageSizeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Select PDF size'),
+        title: Text(
+          ConstantsCommon.selectPdfSize.tr,
+        ),
         centerTitle: true,
         actions: [
           IconButton(
@@ -62,7 +65,7 @@ class DefaultPdfPageSizeScreen extends GetView<DefaultPdfPageSizeController> {
               color: Color(0xfff0f0f0),
               width: double.infinity,
               child: DefaultButton(
-                text: "Add new size",
+                text: ConstantsCommon.addNewSize.tr,
                 press: () {},
               ),
             ),

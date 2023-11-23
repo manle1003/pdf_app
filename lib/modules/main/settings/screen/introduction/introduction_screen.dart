@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../../../lang/constants_common.dart';
 import 'components/default_button.dart';
 import 'components/introduction_content.dart';
 import 'introduction_controller.dart';
@@ -53,7 +54,8 @@ class IntroductionScreen extends GetView<IntroductionController> {
                   Obx(
                     () {
                       return DefaultButton(
-                        text: 'Next (${controller.currentPage.value.toString()}/7)',
+                        text:
+                            '${ConstantsCommon.next.tr} (${controller.currentPage.value.toString()}/7)',
                         press: () {
                           controller.onNextButtonClick();
                         },

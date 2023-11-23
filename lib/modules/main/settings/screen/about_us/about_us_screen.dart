@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_getx_base/lang/constants_common.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import '../../../../../app_controller.dart';
@@ -16,7 +17,7 @@ class AboutUsScreen extends GetView<AboutUsController> {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          'PDF Scanner'.tr,
+          ConstantsCommon.pdfScanner.tr,
         ),
       ),
       body: Padding(
@@ -31,7 +32,7 @@ class AboutUsScreen extends GetView<AboutUsController> {
                 height: 10,
               ),
               Text(
-                'PDF Scanner'.tr,
+                ConstantsCommon.pdfScanner.tr,
                 style: CustomTextStyles.labelBlack500Size24Fw600,
               ),
               SizedBox(

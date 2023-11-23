@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_getx_base/app_controller.dart';
+import 'package:flutter_getx_base/lang/constants_common.dart';
 import 'package:flutter_getx_base/modules/main/tool/tool_controller.dart';
 import 'package:flutter_getx_base/shared/utils/size_utils.dart';
 import 'package:flutter_getx_base/shared/widgets/custom_text_style.dart';
@@ -17,7 +18,7 @@ class ToolScreen extends GetView<ToolController> {
         title: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Text(
-            'PDF Tools',
+            ConstantsCommon.pdfTools.tr,
             style: CustomTextStyles.labelBlack500Size18Fw700,
           ),
         ),
@@ -29,7 +30,7 @@ class ToolScreen extends GetView<ToolController> {
             Align(
               alignment: Alignment.topLeft,
               child: Text(
-                'Convert PDF',
+                ConstantsCommon.convertPdf.tr,
                 style: CustomTextStyles.labelBlack500Size24Fw600,
               ),
             ),
@@ -37,10 +38,22 @@ class ToolScreen extends GetView<ToolController> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                buildTool('assets/icons/ic_image.png', 'Images'),
-                buildTool('assets/icons/ic_pdf.png', 'Image to PDF'),
-                buildTool('assets/icons/ic_image_long.png', 'Long Image'),
-                buildTool('assets/icons/ic_wide.png', 'Wide Image'),
+                buildTool(
+                  'assets/icons/ic_image.png',
+                  ConstantsCommon.images.tr,
+                ),
+                buildTool(
+                  'assets/icons/ic_pdf.png',
+                  ConstantsCommon.imageToPdf.tr,
+                ),
+                buildTool(
+                  'assets/icons/ic_image_long.png',
+                  ConstantsCommon.longImage.tr,
+                ),
+                buildTool(
+                  'assets/icons/ic_wide.png',
+                  ConstantsCommon.wideImage.tr,
+                ),
               ],
             ),
             SizedBox(
@@ -49,7 +62,7 @@ class ToolScreen extends GetView<ToolController> {
             Align(
               alignment: Alignment.topLeft,
               child: Text(
-                'Edit PDF',
+                ConstantsCommon.editPdf.tr,
                 style: CustomTextStyles.labelBlack500Size24Fw600,
               ),
             ),
@@ -57,9 +70,18 @@ class ToolScreen extends GetView<ToolController> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                buildTool('assets/icons/ic_signture.png', 'Signture'),
-                buildTool('assets/icons/ic_water_mark.png', 'Water Mark'),
-                buildTool('assets/icons/ic_password_file.png', 'Password'),
+                buildTool(
+                  'assets/icons/ic_signture.png',
+                  ConstantsCommon.signature.tr,
+                ),
+                buildTool(
+                  'assets/icons/ic_water_mark.png',
+                  ConstantsCommon.waterMark.tr,
+                ),
+                buildTool(
+                  'assets/icons/ic_password_file.png',
+                  ConstantsCommon.password.tr,
+                ),
               ],
             ),
             SizedBox(
