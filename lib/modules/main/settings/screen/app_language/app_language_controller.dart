@@ -1,7 +1,10 @@
 import 'package:get/get.dart';
 
 class AppLanguageController extends GetxController {
-  //TODO: Implement AppLanguageController.
+  Rx<String> languageTitle = 'English'.obs;
+  Rx<int> indexChangeLanguage = 0.obs;
+  Rx<String> locateChangeLanguage = 'en'.obs;
+
 
   @override
   void onInit() {

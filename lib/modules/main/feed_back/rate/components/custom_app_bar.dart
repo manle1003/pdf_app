@@ -15,7 +15,7 @@ class CustomAppBar extends StatelessWidget {
         RoundedButton(
           icon: const Icon(Icons.arrow_back),
           iconColor: Colors.white,
-          bgColor: ColorConstants.greenLightRewardColor,
+          bgColor: ColorConstants.backgroundColorButtonGreen,
           tap: () {
             Get.back();
           },
@@ -24,7 +24,7 @@ class CustomAppBar extends StatelessWidget {
         Text(
           'Feedback',
           style: TextStyle(
-            color: ColorConstants.greenLightRewardColor,
+            color: ColorConstants.backgroundColorButtonGreen,
             fontWeight: FontWeight.bold,
             fontSize: 24,
           ),

@@ -15,7 +15,7 @@ class MainButton extends StatelessWidget {
          Text(
           'Submit',
           style: TextStyle(
-              color: ColorConstants.greenLightRewardColor,
+              color: ColorConstants.backgroundColorButtonGreen,
               fontWeight: FontWeight.bold,
               fontSize: 18),
         ),
@@ -23,7 +23,7 @@ class MainButton extends StatelessWidget {
         RoundedButton(
             icon: const Icon(Icons.arrow_forward),
             iconColor: Colors.white,
-            bgColor: ColorConstants.greenLightRewardColor,
+            bgColor: ColorConstants.backgroundColorButtonGreen,
             tap: () {})
       ],
     );
