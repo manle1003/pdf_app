@@ -1,8 +1,5 @@
 import 'dart:convert';
-
-import 'package:flutter/material.dart';
 import 'package:flutter_getx_base/models/save_item_pdf_scan_model.dart';
-import 'package:flutter_getx_base/shared/constants/colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPreferencesManager {
@@ -64,144 +61,88 @@ class SharedPreferencesManager {
     }
   }
 
-  // Future<void> saveQRCodeFavoriteList(List<QRCode> qrCodeFavoriteList) async {
-  //   final prefs = await SharedPreferences.getInstance();
-  //   final qrCodesFavoriteJson =
-  //       qrCodeFavoriteList.map((qrCode) => qrCode.toJson()).toList();
-  //   await prefs.setString(
-  //       'qrCodeFavoriteList', json.encode(qrCodesFavoriteJson));
-  // }
-
-  // Future<void> saveQRCodeList(List<QRCode> qrCodes) async {
-  //   final prefs = await SharedPreferences.getInstance();
-  //   final qrCodesJson = qrCodes.map((qrCode) => qrCode.toJson()).toList();
-  //   await prefs.setString('qrCodeList', json.encode(qrCodesJson));
-  // }
-
-  // Future<List<QRCode>> getQRCodeList() async {
-  //   final prefs = await SharedPreferences.getInstance();
-  //   final qrCodesJson = prefs.getString('qrCodeList');
-
-  //   if (qrCodesJson != null) {
-  //     final List<dynamic> decoded = json.decode(qrCodesJson);
-  //     return decoded.map((json) => QRCode.fromJson(json)).toList();
-  //   } else {
-  //     return [];
-  //   }
-  // }
-
-  // Future<void> updateTitleForQRCode(String id, String newTitle) async {
-  //   final prefs = await SharedPreferences.getInstance();
-  //   final qrCodesJson = prefs.getString('qrCodeList');
-
-  //   if (qrCodesJson != null) {
-  //     final List<dynamic> decoded = json.decode(qrCodesJson);
-  //     final List<QRCode> qrCodes =
-  //         decoded.map((json) => QRCode.fromJson(json)).toList();
-
-  //     final index = qrCodes.indexWhere((qrCode) => qrCode.id == id);
-
-  //     if (index != -1) {
-  //       qrCodes[index].title = newTitle;
-
-  //       final updatedQRCodeList =
-  //           qrCodes.map((qrCode) => qrCode.toJson()).toList();
-  //       await prefs.setString('qrCodeList', json.encode(updatedQRCodeList));
-  //     }
-  //   }
-  // }
-
-  // Future<void> changeFavouriteById(
-  //     String idQRCode, bool isCheckFavourite) async {
-  //   final prefs = await SharedPreferences.getInstance();
-  //   final qrCodesJson = prefs.getString('qrCodeList');
-
-  //   if (qrCodesJson != null) {
-  //     final List<dynamic> decoded = json.decode(qrCodesJson);
-  //     final List<QRCode> qrCodes =
-  //         decoded.map((json) => QRCode.fromJson(json)).toList();
-
-  //     final index = qrCodes.indexWhere((qrCode) => qrCode.id == idQRCode);
-
-  //     if (index != -1) {
-  //       qrCodes[index].favorite = isCheckFavourite;
-
-  //       final updatedQRCodeList =
-  //           qrCodes.map((qrCode) => qrCode.toJson()).toList();
-  //       await prefs.setString('qrCodeList', json.encode(updatedQRCodeList));
-  //     }
-  //   }
-  // }
-
-  // Future<void> deleteQRCodeById(String id) async {
-  //   final prefs = await SharedPreferences.getInstance();
-  //   final qrCodesJson = prefs.getString('qrCodeList');
-
-  //   if (qrCodesJson != null) {
-  //     final List<dynamic> decoded = json.decode(qrCodesJson);
-  //     List<QRCode> qrCodes =
-  //         decoded.map((json) => QRCode.fromJson(json)).toList();
-
-  //     final index = qrCodes.indexWhere((qrCode) => qrCode.id == id);
-
-  //     if (index != -1) {
-  //       qrCodes.removeAt(index);
-
-  //       final updatedQRCodeList =
-  //           qrCodes.map((qrCode) => qrCode.toJson()).toList();
-  //       await prefs.setString('qrCodeList', json.encode(updatedQRCodeList));
-  //     }
-  //   }
-  // }
-
-  // Future<void> deleteQRCodeAll() async {
-  //   final prefs = await SharedPreferences.getInstance();
-  //   final qrCodesJson = prefs.getString('qrCodeList');
-
-  //   if (qrCodesJson != null) {
-  //     final List<dynamic> decoded = json.decode(qrCodesJson);
-  //     List<QRCode> qrCodes =
-  //         decoded.map((json) => QRCode.fromJson(json)).toList();
-
-  //     qrCodes.clear();
-
-  //     final updatedQRCodeList =
-  //         qrCodes.map((qrCode) => qrCode.toJson()).toList();
-  //     await prefs.setString('qrCodeList', json.encode(updatedQRCodeList));
-  //   }
-  // }
-
-  // Future<void> deleteAllFavourite() async {
-  //   final prefs = await SharedPreferences.getInstance();
-  //   final qrCodesJson = prefs.getString('qrCodeList');
-
-  //   if (qrCodesJson != null) {
-  //     final List<dynamic> decoded = json.decode(qrCodesJson);
-  //     final List<QRCode> qrCodes =
-  //         decoded.map((json) => QRCode.fromJson(json)).toList();
-
-  //     for (var item in qrCodes) {
-  //       item.favorite = false;
-  //     }
-
-  //     final updatedQRCodeList =
-  //         qrCodes.map((qrCode) => qrCode.toJson()).toList();
-  //     await prefs.setString('qrCodeList', json.encode(updatedQRCodeList));
-  //   }
-  // }
-
-  Future<void> saveColorToPreferences(String key, Color color) async {
+  Future<void> deletePdfScanById(String id) async {
     final prefs = await SharedPreferences.getInstance();
-    final colorValue = color.value;
-    await prefs.setInt(key, colorValue);
+    final pdfScanJson = prefs.getString('pdfScanList');
+
+    if (pdfScanJson != null) {
+      final List<dynamic> decoded = json.decode(pdfScanJson);
+      List<PdfScan> pdfScan =
+          decoded.map((json) => PdfScan.fromJson(json)).toList();
+
+      final index = pdfScan.indexWhere((qrCode) => qrCode.id == id);
+
+      if (index != -1) {
+        pdfScan.removeAt(index);
+
+        final updatedQRCodeList =
+            pdfScan.map((qrCode) => qrCode.toJson()).toList();
+        await prefs.setString('pdfScanList', json.encode(updatedQRCodeList));
+      }
+    }
   }
 
-  Future<Color> loadColorFromPreferences(String key) async {
+  Future<void> deletePdfScanAll() async {
     final prefs = await SharedPreferences.getInstance();
-    final colorValue = prefs.getInt(key);
-    final color =
-        Color(colorValue ?? ColorConstants.backgroundColorButtonGreen.value);
-    return color;
+    final pdfScanJson = prefs.getString('pdfScanList');
+
+    if (pdfScanJson != null) {
+      final List<dynamic> decoded = json.decode(pdfScanJson);
+      List<PdfScan> pdfScan =
+          decoded.map((json) => PdfScan.fromJson(json)).toList();
+
+      pdfScan.clear();
+
+      final updatedPdfScanList =
+          pdfScan.map((pdsScan) => pdsScan.toJson()).toList();
+      await prefs.setString('pdfScanList', json.encode(updatedPdfScanList));
+    }
+  }
+
+  Future<void> updateTitleForPdf(String id, String newTitle) async {
+    final prefs = await SharedPreferences.getInstance();
+    final pdfScanJson = prefs.getString('pdfScanList');
+
+    if (pdfScanJson != null) {
+      final List<dynamic> decoded = json.decode(pdfScanJson);
+      final List<PdfScan> pdfScan =
+          decoded.map((json) => PdfScan.fromJson(json)).toList();
+
+      final index = pdfScan.indexWhere((pdf) => pdf.id == id);
+
+      if (index != -1) {
+        pdfScan[index].title = newTitle;
+
+        final updatedPdfScanList =
+            pdfScan.map((pdfScanList) => pdfScanList.toJson()).toList();
+        await prefs.setString('pdfScanList', json.encode(updatedPdfScanList));
+      }
+    }
+  }
+
+  Future<void> editPdfScanFilePath(String id, String newFilePath) async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final pdfScansJson = prefs.getString('pdfScanList');
+
+      if (pdfScansJson != null) {
+        List<dynamic> decoded = json.decode(pdfScansJson);
+        List<PdfScan> pdfScanList =
+            decoded.map((json) => PdfScan.fromJson(json)).toList();
+
+        int index = pdfScanList.indexWhere((pdf) => pdf.id == id);
+
+        if (index != -1) {
+          pdfScanList[index].filePath = newFilePath;
+
+          final updatedPdfScanList =
+              pdfScanList.map((pdfScan) => pdfScan.toJson()).toList();
+          await prefs.setString('pdfScanList', json.encode(updatedPdfScanList));
+        }
+      }
+    } catch (e) {
+      print('Error in editPdfScanFilePath: $e');
+    }
   }
 
   Future<int> getIndexChangeLanguage() async {

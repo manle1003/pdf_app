@@ -1,15 +1,17 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_getx_base/models/save_item_pdf_scan_model.dart';
+import 'package:flutter_getx_base/modules/main/home_screen/home_controller.dart';
 import 'package:flutter_getx_base/shared/widgets/custom_image_view.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import '../../../../shared/constants/colors.dart';
+import '../custom_dialog/custom_dialog.dart';
 
 class PdfScanListTile extends StatelessWidget {
   final PdfScan pdfScan;
 
-  const PdfScanListTile(this.pdfScan);
-
+  PdfScanListTile(this.pdfScan);
+  final HomeController homeController = Get.find();
   @override
   Widget build(BuildContext context) {
     File imageFile = File(pdfScan.filePath);
@@ -23,7 +25,7 @@ class PdfScanListTile extends StatelessWidget {
       title: Padding(
         padding: const EdgeInsets.only(bottom: 5, top: 3),
         child: Text(
-          'PDF SCAN',
+          pdfScan.title,
           style: TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.w500,
@@ -54,19 +56,16 @@ class PdfScanListTile extends StatelessWidget {
           ),
         ],
       ),
-      trailing: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(Icons.more_vert),
-          SizedBox(
-            width: 10,
-          ),
-          Icon(
-            Icons.radio_button_unchecked,
-            size: 16,
-            color: ColorConstants.grey800,
-          ),
-        ],
+      trailing: IconButton(
+        onPressed: () {
+          CustomDialog.showMaterialDialogBottomSheetItem(
+            context: context,
+            pdfScan: pdfScan,
+          );
+        },
+        icon: Icon(
+          Icons.more_vert,
+        ),
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:flutter/material.dart';
 import 'package:flutter_getx_base/lang/language.dart';
 import 'package:flutter_getx_base/models/save_item_pdf_scan_model.dart';
 import 'package:flutter_getx_base/shared/constants/common.dart';
@@ -6,12 +7,20 @@ import 'package:flutter_getx_base/shared/sharepreference.dart';
 import 'package:flutter_getx_base/shared/widgets/common_widget.dart';
 import 'package:get/get.dart';
 import '../../../lang/translation_service.dart';
+import 'package:flutter_email_sender/flutter_email_sender.dart';
 
 class HomeController extends GetxController {
   final RxBool isSearching = false.obs;
   final RxList<PdfScan> listPdfScan = <PdfScan>[].obs;
   final RxList<PdfScan> searchResults = <PdfScan>[].obs;
   final Rx<DateTime?> currentBackPressTime = Rx<DateTime?>(null);
+  Rx<PdfScan?> selectedOption = Rx<PdfScan?>(null);
+  RxString titleChange = "".obs;
+
+  final TextEditingController changeTitlePdfScanController =
+      TextEditingController();
+
+  final GlobalKey<FormState> changeTitlePdfScanFormKey = GlobalKey<FormState>();
 
   final Rx<Language> _selectedLanguage =
       Language(1, "🇺🇸", "English", "en").obs;
@@ -21,6 +30,34 @@ class HomeController extends GetxController {
   void onInit() {
     super.onInit();
     getListPdfScan();
+  }
+
+  bool isSelected(PdfScan pdfScan) {
+    return selectedOption.value == pdfScan;
+  }
+
+  Future<void> sendEmailWithAttachment(String recipient, String subject,
+      String body, List<String> attachmentPaths) async {
+    final Email email = Email(
+      body: body,
+      subject: subject,
+      recipients: [recipient],
+      attachmentPaths: attachmentPaths,
+    );
+
+    try {
+      await FlutterEmailSender.send(email);
+    } catch (error) {
+      print('Error sending email: $error');
+    }
+  }
+
+  void toggleSelection(PdfScan pdfScan) {
+    if (isSelected(pdfScan)) {
+      selectedOption.value = null; // Deselect
+    } else {
+      selectedOption.value = pdfScan; // Select
+    }
   }
 
   void getListPdfScan() async {
@@ -47,6 +84,16 @@ class HomeController extends GetxController {
     }
   }
 
+  void deletePdfAll() {
+    SharedPreferencesManager.instance.deletePdfScanAll();
+    getListPdfScan();
+  }
+
+  void deleteQRCodeById(String id) {
+    SharedPreferencesManager.instance.deletePdfScanById(id);
+    getListPdfScan();
+  }
+
   Future<bool> onWillPop() async {
     final now = DateTime.now();
     if (currentBackPressTime.value == null ||
@@ -57,6 +104,17 @@ class HomeController extends GetxController {
       return false;
     }
     return true;
+  }
+
+  void changeTitle(
+      String id, GlobalKey<FormState> changeTitleFormKey, String title) async {
+    if (changeTitleFormKey.currentState!.validate()) {
+      await SharedPreferencesManager.instance
+          .updateTitleForPdf(id, title.trim());
+      titleChange.value = title.trim();
+      getListPdfScan();
+      Get.back();
+    }
   }
 
   void handleLanguageSelection(Language? language) {

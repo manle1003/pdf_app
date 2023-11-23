@@ -5,7 +5,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_getx_base/models/save_item_pdf_scan_model.dart';
 import 'package:flutter_getx_base/modules/main/home_screen/home_controller.dart';
+import 'package:flutter_getx_base/routes/app_pages.dart';
 import 'package:flutter_getx_base/shared/sharepreference.dart';
+import 'package:flutter_getx_base/shared/utils/rive_utils.dart';
 import 'package:get/get.dart';
 import 'package:image_editor_plus/image_editor_plus.dart';
 import 'package:path_provider/path_provider.dart';
@@ -99,7 +101,9 @@ class _CameraPageState extends State<CameraPage> {
     filePathList = await SharedPreferencesManager.instance.getPdfScanList();
     if (pdfScan != null) {
       filePathList.add(pdfScan);
-
+      RiveUtils.showSuccessDialog('Save successfully', context, () {
+        Get.offAllNamed(Routes.ENTRY_POINT);
+      });
       SharedPreferencesManager.instance.savePdfScanList(filePathList);
       homeController.getListPdfScan();
     }

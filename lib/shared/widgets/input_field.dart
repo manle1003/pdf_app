@@ -3,14 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_getx_base/shared/constants/colors.dart';
-import 'package:flutter_getx_base/shared/utils/size_utils.dart';
-import 'package:flutter_getx_base/shared/widgets/custom_text_style.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-
 import '../../app_controller.dart';
 import '../../theme/theme_helper.dart';
-import '../constants/common.dart';
 
 class InputField extends StatelessWidget {
   final void Function(String?)? onSaved;
@@ -31,10 +26,12 @@ class InputField extends StatelessWidget {
   final String? initValue;
   final void Function(String)? onChanged;
   final bool digitsOnly;
+  final int? maxLength;
+  final bool isCheckMaxlenght;
   final double? paddingIcon;
   bool validate = false;
-  bool checkBackgroundColorTextfield;
-
+  final String? labelText;
+  final bool checkSizeTextField;
   List<TextInputFormatter>? inputFormatters;
   InputField({
     Key? key,
@@ -57,7 +54,10 @@ class InputField extends StatelessWidget {
     this.onChanged,
     this.digitsOnly = false,
     this.paddingIcon,
-    this.checkBackgroundColorTextfield = false,
+    this.checkSizeTextField = false,
+    this.labelText,
+    this.maxLength,
+    this.isCheckMaxlenght = false,
   }) : super(key: key);
 
   PrimaryColors get appTheme => ThemeHelper().themeColor();
@@ -78,50 +78,67 @@ class InputField extends StatelessWidget {
       obscureText: obscureText,
       initialValue: initValue,
       style: TextStyle(
-        color: checkBackgroundColorTextfield == true
-            ? appController.isDarkModeOn.value
-                ? ColorConstants.white
-                : ColorConstants.black
-            : ColorConstants.black,
-      ),
+          color: appController.isDarkModeOn.value
+              ? ColorConstants.white
+              : ColorConstants.black),
       decoration: InputDecoration(
-        suffixIconConstraints:
-            const BoxConstraints(maxHeight: 60, maxWidth: 60),
-        contentPadding: getPadding(all: 10),
         suffixIcon: suffixIcon,
+        labelText: labelText,
+        hintMaxLines: checkSizeTextField ? 3 : 1,
+        contentPadding: EdgeInsets.symmetric(
+          vertical: checkSizeTextField ? 100 : 16,
+          horizontal: 10,
+        ),
+        isDense: true,
+        labelStyle: TextStyle(
+          color: appController.isDarkModeOn.value
+              ? ColorConstants.white
+              : Colors.grey,
+        ),
         hintText: hintText,
-        hintStyle: CustomTextStyles.lableTextInput500,
-        prefixIcon: Padding(
-          padding: paddingIcon != null
-              ? EdgeInsets.all(paddingIcon!)
-              : EdgeInsets.all(CommonConstants.defaultPadding),
-          child: Container(
-            height: getSize(20),
-            width: getSize(20),
-            child: icon != null
-                ? SvgPicture.asset(
-                    icon ?? "",
-                    color: leadingIconColor != null
-                        ? leadingIconColor
-                        : ColorConstants.grey,
-                  )
-                : null,
+        hintStyle: TextStyle(
+          color: appController.isDarkModeOn.value
+              ? ColorConstants.white.withOpacity(.6)
+              : Colors.grey.withOpacity(0.6),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12.0),
+          borderSide: BorderSide(
+            width: 1.6,
+            color: appController.isDarkModeOn.value
+                ? ColorConstants.white.withOpacity(.6)
+                : Colors.grey.withOpacity(0.4),
           ),
         ),
-        border: OutlineInputBorder(
-          borderSide: isBorder ?? false
-              ? BorderSide(color: appTheme.gray400)
-              : BorderSide.none,
-          borderRadius: BorderRadius.circular(5.0),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12.0),
+          borderSide: BorderSide(
+            width: 1.4,
+            color: ColorConstants.red,
+          ),
         ),
-        filled: true,
-        fillColor: checkBackgroundColorTextfield == true
-            ? appController.isDarkModeOn.value
-                ? ColorConstants.grey800
-                : ColorConstants.white
-            : ColorConstants.white,
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12.0),
+          borderSide: BorderSide(
+            width: 1.4,
+            color: ColorConstants.red,
+          ),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12.0),
+          borderSide: BorderSide(
+            width: 1.6,
+            color: ColorConstants.backgroundColorButtonGreen.withOpacity(.5),
+          ),
+        ),
+        floatingLabelBehavior: FloatingLabelBehavior.always,
       ),
-      enabled: enableTexfield,
+      maxLength: isCheckMaxlenght ? maxLength : null,
+      buildCounter: isCheckMaxlenght
+          ? (context,
+                  {required currentLength, required isFocused, maxLength}) =>
+              Text('${currentLength}/$maxLength')
+          : null,
     );
   }
 }
