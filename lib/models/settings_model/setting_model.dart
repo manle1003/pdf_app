@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_getx_base/routes/app_pages.dart';
 import 'package:get/get.dart';
 
+import '../../lang/constants_common.dart';
+
 class SettingsItemsModel {
   final Widget image;
   final String title, subtext;
@@ -23,15 +25,15 @@ List<SettingsItemsModel> settingsItems = [
   SettingsItemsModel(
     function: () => Get.toNamed(Routes.INTRODUCTION),
     image: Icon(Icons.receipt_long_outlined),
-    title: 'Introduction',
-    subtext: 'Learn about app in 1 minute',
+    title: ConstantsCommon.introduction.tr,
+    subtext: ConstantsCommon.learnApp.tr,
     iconButton: Icon(Icons.keyboard_arrow_right),
     isCheckDisplayIcon: true,
   ),
   SettingsItemsModel(
     function: () => Get.toNamed(Routes.DEFAULT_PDF_PAGE_SIZE),
     image: Icon(Icons.screenshot_monitor_outlined),
-    title: 'Default PDF page size',
+    title: ConstantsCommon.defaultPdfSize.tr,
     subtext: '210mm x 297mm',
     iconButton: Icon(Icons.keyboard_arrow_right),
     isCheckDisplayIcon: true,
@@ -39,56 +41,56 @@ List<SettingsItemsModel> settingsItems = [
   SettingsItemsModel(
     function: () => Get.toNamed(Routes.SIGNATURE),
     image: Icon(Icons.description_outlined),
-    title: 'Signature',
-    subtext: 'Scan handwritten signature here',
+    title: ConstantsCommon.signature.tr,
+    subtext: ConstantsCommon.scanHandwritten.tr,
     iconButton: Icon(Icons.keyboard_arrow_right),
     isCheckDisplayIcon: true,
   ),
   SettingsItemsModel(
     function: () => Get.toNamed(Routes.FONT_FAMILY),
     image: Icon(Icons.format_size_outlined),
-    title: 'Font family',
-    subtext: 'Set font style',
+    title: ConstantsCommon.fontFamily.tr,
+    subtext: ConstantsCommon.chooseFontStyle.tr,
     iconButton: Icon(Icons.keyboard_arrow_right),
     isCheckDisplayIcon: true,
   ),
   SettingsItemsModel(
     function: () => Get.toNamed(Routes.APP_LANGUAGE),
     image: Icon(Icons.language_outlined),
-    title: 'App language',
-    subtext: 'Choose language',
+    title: ConstantsCommon.appLanguage.tr,
+    subtext: ConstantsCommon.chooseLanguage.tr,
     iconButton: Icon(Icons.keyboard_arrow_right),
     isCheckDisplayIcon: true,
   ),
   SettingsItemsModel(
     function: () => Get.toNamed(Routes.FEED_BACK),
     image: Icon(Icons.feedback_outlined),
-    title: 'Feed back',
-    subtext: 'Give us your feedback',
+    title: ConstantsCommon.feedback.tr,
+    subtext: ConstantsCommon.giveFeedback.tr,
     iconButton: Icon(Icons.keyboard_arrow_right),
     isCheckDisplayIcon: true,
   ),
   SettingsItemsModel(
     function: () => Get.toNamed(Routes.RATING),
     image: Icon(Icons.star_border_outlined),
-    title: 'Rating',
-    subtext: 'App reviews',
+    title: ConstantsCommon.rating.tr,
+    subtext: ConstantsCommon.appReviews.tr,
     iconButton: Icon(Icons.keyboard_arrow_right),
     isCheckDisplayIcon: true,
   ),
   SettingsItemsModel(
     function: () {},
     image: Icon(Icons.share_outlined),
-    title: 'Share',
-    subtext: 'Share to everyone',
+    title: ConstantsCommon.share.tr,
+    subtext: ConstantsCommon.shareToEvery.tr,
     iconButton: Icon(Icons.keyboard_arrow_right),
     isCheckDisplayIcon: true,
   ),
   SettingsItemsModel(
     function: () => Get.toNamed(Routes.ABOUT_US),
     image: Icon(Icons.help_outline),
-    title: 'About us',
-    subtext: 'Learn more about us',
+    title: ConstantsCommon.aboutUs.tr,
+    subtext: ConstantsCommon.learnMoreUs.tr,
     iconButton: Icon(Icons.keyboard_arrow_right),
     isCheckDisplayIcon: true,
   ),

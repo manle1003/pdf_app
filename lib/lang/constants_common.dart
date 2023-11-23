@@ -1,36 +1,89 @@
 class ConstantsCommon {
-  //Home
+  //Bottom nav
   static String home = 'home';
-  static String copySuccess = 'copySuccess';
-  static String enterText = 'enterText';
-  static String typeContent = 'typeContent';
-  static String repeatNewLine = 'repeatNewLine';
-  static String repeatText = 'repeatText';
-  static String copy = 'copy';
-  static String share = 'share';
-  static String stylize = 'stylize';
-
-  //Drawers
-  static String scan = 'scan';
-  static String scanImage = 'scanImage';
-  static String favourites = 'favourites';
-  static String createQr = 'createQr';
   static String setting = 'setting';
-  static String feedback = 'feedback';
-  static String contactUs = 'contactUs';
-  static String aboutUs = 'aboutUs';
-  static String textLooper = 'textLooper';
-  static String policy = 'policy';
+  static String document = 'document';
+  static String tool = 'tool';
+
+  //Home
+  static String copySuccess = 'copySuccess';
+  static String copy = 'copy';
+  static String appInHouse = 'appInHouse';
+  static String search = 'search';
+  static String enterSearch = 'enterSearch';
+  static String imageToPdf = 'imageToPdf';
+  static String createScan = 'createScan';
+  static String manageScans = 'manageScans';
+  static String deleteAll = 'deleteAll';
+  static String quit = 'quit';
+
+  //Document
+  static String myDocument = 'myDocument';
+  static String importFile = 'importFile';
+  static String editFile = 'editFile';
+
+  //Tool
+  static String pdfTools = 'pdfTools';
+  static String convertPdf = 'convertPdf';
+  static String images = 'images';
+  static String longImage = 'longImage';
+  static String wideImage = 'wideImage';
+  static String editPdf = 'editPdf';
+  static String signature = 'signature';
+  static String waterMark = 'waterMark';
+  static String password = 'password';
 
   //Setting
-  static String colorBoard = 'colorBoard';
-  static String theme = 'theme';
-  static String vibrations = 'vibrations';
-  static String darkMode = 'darkMode';
-  static String system = 'system';
-  static String changeLanguage = 'changeLanguage';
-  static String upgrade = 'upgrade';
-  static String required = 'required';
+  static String introduction = 'introduction';
+  static String learnApp = 'learnApp';
+  static String defaultPdfSize = 'defaultPdfSize';
+  static String scanHandwritten = 'scanHandwritten';
+  static String fontFamily = 'fontFamily';
+  static String chooseFontStyle = 'chooseFontStyle';
+  static String appLanguage = 'appLanguage';
+  static String chooseLanguage = 'chooseLanguage';
+  static String feedback = 'feedback';
+  static String giveFeedback = 'giveFeedback';
+  static String rating = 'rating';
+  static String appReviews = 'appReviews';
+  static String share = 'share';
+  static String shareToEvery = 'shareToEvery';
+  static String contactUs = 'contactUs';
+  static String aboutUs = 'aboutUs';
+  static String learnMoreUs = 'learnMoreUs';
+
+  //Introduction
+  static String next = 'next';
+  static String introduction_01 = 'introduction_01';
+  static String introduction_02 = 'introduction_02';
+  static String introduction_03 = 'introduction_03';
+  static String introduction_04 = 'introduction_04';
+  static String introduction_05 = 'introduction_05';
+  static String introduction_06 = 'introduction_06';
+  static String introduction_07 = 'introduction_07';
+
+  //Default PDF size
+  static String selectPdfSize = 'selectPdfSize';
+  static String addNewSize = 'addNewSize';
+
+  //Signature
+  static String editSignature = 'editSignature';
+  static String newSignature = 'newSignature';
+
+  //Font family
+  static String selectFont = 'selectFont';
+  static String pdfScanner = 'pdfScanner';
+
+  //App language
+  static String selectLanguage = 'selectLanguage';
+
+  //Feedback
+  static String welcomeApp = 'welcomeApp';
+  static String yourFeedbackValuable = 'yourFeedbackValuable';
+  static String rateYourExperience = 'rateYourExperience';
+  static String howUseExperience = 'howUseExperience';
+  static String additionalComments = 'additionalComments';
+  static String submit = 'submit';
 
   //About app
   static String contentAboutAppFirst = 'contentAboutAppFirst';
@@ -59,9 +112,8 @@ class ConstantsCommon {
   static String experienceApp = 'Experience the best app without ads';
   static String freeVersion = 'freeVersion';
   static String upgradePro = 'Upgrade to Pro Version and Enjoy More Benefits!';
-  static String appInHouse = 'appInHouse';
   static String version = 'version';
-  
+
   // Ads in house
   static String description_app_01 = 'description_app_01';
   static String description_app_02 = 'description_app_02';

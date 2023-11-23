@@ -1,9 +1,8 @@
-// ignore_for_file: deprecated_member_use, must_be_immutable
+// ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
 import 'package:flutter_getx_base/shared/utils/size_utils.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
 import '../widgets/normal_button.dart';
 
 class BottomBarItem {
@@ -69,7 +68,10 @@ class CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
               children: [
                 Padding(
                   padding: getPadding(bottom: 5),
-                  child: SvgPicture.asset(item?.iconData ?? '', color: color),
+                  child: SvgPicture.asset(
+                    item?.iconData ?? '',
+                    color: color,
+                  ),
                 ),
                 Text(
                   item?.text ?? '',
@@ -98,7 +100,6 @@ class CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
         },
       );
     });
-    // items.insert(items.length >> 1, _buildMiddleTabItem());
 
     return BottomAppBar(
       shape: widget.notchedShape,
@@ -107,25 +108,6 @@ class CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
         children: items,
       ),
       color: widget.backgroundColor,
-    );
-  }
-
-  Widget _buildMiddleTabItem() {
-    return Expanded(
-      child: SizedBox(
-        height: widget.height,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(height: widget.iconSize),
-            Text(
-              widget.centerItemText ?? '',
-              style: TextStyle(color: widget.color),
-            ),
-          ],
-        ),
-      ),
     );
   }
 }

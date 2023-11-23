@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../../lang/constants_common.dart';
 
 class CustomSearchField extends StatelessWidget {
   final String hintText;
@@ -14,7 +17,7 @@ class CustomSearchField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       decoration: InputDecoration(
-        labelText: 'Search',
+        labelText: ConstantsCommon.search.tr,
         hintText: hintText,
         prefixIcon: Icon(Icons.search),
         border: OutlineInputBorder(

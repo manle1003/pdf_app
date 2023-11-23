@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import '../../../../../lang/constants_common.dart';
 import '../../../../../shared/constants/colors.dart';
 
 class MultilineInput extends StatelessWidget {
@@ -26,7 +28,7 @@ class MultilineInput extends StatelessWidget {
         maxLines: 2,
         decoration: InputDecoration(
             border: InputBorder.none,
-            hintText: 'Additional comment',
+            hintText: ConstantsCommon.additionalComments.tr,
             hintStyle: TextStyle(
               color: ColorConstants.greyColor,
             )),

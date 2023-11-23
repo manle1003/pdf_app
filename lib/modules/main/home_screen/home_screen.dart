@@ -6,6 +6,7 @@ import 'package:flutter_getx_base/models/save_item_pdf_scan_model.dart';
 import 'package:flutter_getx_base/shared/utils/size_utils.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+import '../../../lang/constants_common.dart';
 import '../components/custom_item_in_home/custom_item_in_home.dart';
 import 'home_controller.dart';
 
@@ -76,7 +77,77 @@ class HomeScreen extends GetView<HomeController> {
       actions: [
         _buildSearchTextField(),
         _buildIconButton(Icons.add, () {}),
-        _buildIconButton(Icons.more_vert, () {}),
+        // _buildIconButton(Icons.more_vert, () {}),
+        PopupMenuButton<String>(
+          offset: Offset(-20, 40),
+          onSelected: (value) {
+            print('Selected: $value');
+          },
+          itemBuilder: (BuildContext context) {
+            return [
+              PopupMenuItem<String>(
+                value: 'option1',
+                child: Row(
+                  children: [
+                    Icon(Icons.picture_as_pdf, color: Colors.blue),
+                    SizedBox(width: 8),
+                    Text(
+                      ConstantsCommon.imageToPdf.tr,
+                    ),
+                  ],
+                ),
+              ),
+              PopupMenuItem<String>(
+                value: 'option1',
+                child: Row(
+                  children: [
+                    Icon(Icons.create, color: Colors.green),
+                    SizedBox(width: 8),
+                    Text(
+                      ConstantsCommon.createScan.tr,
+                    ),
+                  ],
+                ),
+              ),
+              PopupMenuItem<String>(
+                value: 'option1',
+                child: Row(
+                  children: [
+                    Icon(Icons.manage_search, color: Colors.blue),
+                    SizedBox(width: 8),
+                    Text(
+                      ConstantsCommon.manageScans.tr,
+                    ),
+                  ],
+                ),
+              ),
+              PopupMenuItem<String>(
+                value: 'option2',
+                child: Row(
+                  children: [
+                    Icon(Icons.delete, color: Colors.red),
+                    SizedBox(width: 8),
+                    Text(
+                      ConstantsCommon.deleteAll.tr,
+                    ),
+                  ],
+                ),
+              ),
+              PopupMenuItem<String>(
+                value: 'option3',
+                child: Row(
+                  children: [
+                    Icon(Icons.logout, color: Colors.orange),
+                    SizedBox(width: 8),
+                    Text(
+                      ConstantsCommon.quit.tr,
+                    ),
+                  ],
+                ),
+              ),
+            ];
+          },
+        ),
       ],
     );
   }
@@ -101,8 +172,8 @@ class HomeScreen extends GetView<HomeController> {
     return InputDecoration(
       contentPadding: getPadding(all: 10),
       isDense: false,
-      labelText: 'Search',
-      hintText: 'Enter search',
+      labelText: ConstantsCommon.search.tr,
+      hintText: ConstantsCommon.enterSearch.tr,
       prefixIcon: Icon(Icons.search),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(20),

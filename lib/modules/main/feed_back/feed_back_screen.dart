@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_getx_base/lang/constants_common.dart';
 import 'package:flutter_getx_base/modules/main/feed_back/rate/components/app_header.dart';
 import 'package:flutter_getx_base/modules/main/feed_back/rate/components/main_button.dart';
 import 'package:flutter_getx_base/modules/main/feed_back/rate/components/multiline_input.dart';
-import 'package:flutter_getx_base/modules/main/feed_back/rate/components/ride_stat.dart';
 import 'package:flutter_getx_base/shared/constants/colors.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:smooth_star_rating_nsafe/smooth_star_rating.dart';
 
@@ -40,42 +41,37 @@ class _FeedBackScreenState extends State<FeedBackScreen> {
                 child: Column(
                   children: [
                     CustomAppBar(),
-                    Lottie.asset('assets/svgs/rate_animation.json', height: 250),
+                    Lottie.asset('assets/svgs/rate_animation.json',
+                        height: 250),
                     const SizedBox(height: 16),
                     Text(
-                      'Welcome to PDF Scanner',
+                      ConstantsCommon.welcomeApp.tr,
                       style: TextStyle(
                         color: ColorConstants.blackColor,
                         fontSize: 24,
                       ),
                     ),
                     Text(
-                      'Your Feedback is Valuable',
+                      ConstantsCommon.yourFeedbackValuable.tr,
                       style: TextStyle(
                         color: ColorConstants.blackColor,
                         fontSize: 16,
                       ),
                     ),
-                    const SizedBox(height: 16),
-                    Divider(
-                      color: ColorConstants.kPrimaryLightColor,
-                    ),
-                    const SizedBox(height: 16),
-                    const TourStats(),
                     const SizedBox(height: 16),
                     const Divider(
                       color: ColorConstants.kPrimaryLightColor,
                     ),
                     const SizedBox(height: 16),
                     Text(
-                      'Rate Your Experience',
+                      ConstantsCommon.rateYourExperience.tr,
                       style: TextStyle(
                         color: ColorConstants.blackColor,
                         fontSize: 16,
                       ),
                     ),
                     Text(
-                      'How would you rate the usage experience?',
+                      ConstantsCommon.howUseExperience.tr,
                       style: TextStyle(
                           color: ColorConstants.black,
                           fontSize: 16,
@@ -94,9 +90,11 @@ class _FeedBackScreenState extends State<FeedBackScreen> {
                       color: Colors.orange,
                       borderColor: Colors.orange,
                       onRatingChanged: (value) {
-                        setState(() {
-                          rating = value;
-                        });
+                        setState(
+                          () {
+                            rating = value;
+                          },
+                        );
                       },
                     ),
                     const SizedBox(height: 16),

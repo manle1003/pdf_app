@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_getx_base/lang/constants_common.dart';
 import 'package:flutter_getx_base/modules/main/document/components/pdf_file_items.dart';
 import 'package:flutter_getx_base/shared/utils/size_utils.dart';
 import 'package:get/get.dart';
@@ -12,7 +13,9 @@ class SettingsScreen extends GetView<SettingsController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Settings'),
+        title: Text(
+          ConstantsCommon.setting.tr,
+        ),
       ),
       body: ListView.builder(
         padding: getPadding(bottom: 100),

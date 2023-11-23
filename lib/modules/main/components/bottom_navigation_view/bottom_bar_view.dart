@@ -11,6 +11,7 @@ import 'package:flutter_getx_base/theme/theme_helper.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
+import '../../../../lang/constants_common.dart';
 import '../../../../shared/constants/common.dart';
 
 class BottomBarView extends StatefulWidget {
@@ -265,10 +266,10 @@ class _TabIconsState extends State<TabIcons> with TickerProviderStateMixin {
     final AppController appController = Get.find();
     Size size = MediaQuery.of(context).size;
     List<String> listTitleBottom = [
-      'Home'.tr,
-      'New'.tr,
-      'Group'.tr,
-      'setting'.tr
+      ConstantsCommon.home.tr,
+      ConstantsCommon.document.tr,
+      ConstantsCommon.tool.tr,
+      ConstantsCommon.setting.tr,
     ];
     return Center(
       child: InkWell(

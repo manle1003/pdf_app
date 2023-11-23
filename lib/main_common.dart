@@ -68,13 +68,10 @@ void configLoading() {
   EasyLoading.instance
     ..indicatorType = EasyLoadingIndicatorType.fadingCircle
     ..loadingStyle = EasyLoadingStyle.custom
-    // ..indicatorSize = 45.0
     ..radius = 10.0
-    // ..progressColor = Colors.yellow
     ..backgroundColor = ColorConstants.lightGray
     ..indicatorColor = ColorConstants.kPrimaryColor
     ..textColor = ColorConstants.kPrimaryColor
-    // ..maskColor = Colors.red
     ..userInteractions = false
     ..dismissOnTap = false
     ..animationStyle = EasyLoadingAnimationStyle.scale;
