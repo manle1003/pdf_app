@@ -7,6 +7,7 @@ import 'package:flutter_getx_base/routes/app_pages.dart';
 import 'package:flutter_getx_base/shared/constants/colors.dart';
 import 'package:flutter_getx_base/shared/utils/app_flavor_helper.dart';
 import 'package:get/get.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import 'app_binding.dart';
 import 'di.dart';
@@ -19,6 +20,7 @@ Future<void> mainCommon(AppFlavor flavor) async {
   await Future.wait([
     DenpendencyInjection.init(),
     DenpendencyInjection.inject(flavor),
+    MobileAds.instance.initialize(),
   ]);
 
   runApp(App(flavor));

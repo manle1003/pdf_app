@@ -2,12 +2,12 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_getx_base/lang/language.dart';
 import 'package:flutter_getx_base/models/save_item_pdf_scan_model.dart';
-import 'package:flutter_getx_base/shared/constants/common.dart';
 import 'package:flutter_getx_base/shared/sharepreference.dart';
-import 'package:flutter_getx_base/shared/widgets/common_widget.dart';
 import 'package:get/get.dart';
 import '../../../lang/translation_service.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
+
+import '../../../shared/widgets/bottom_sheet.dart';
 
 class HomeController extends GetxController {
   final RxBool isSearching = false.obs;
@@ -60,6 +60,15 @@ class HomeController extends GetxController {
     }
   }
 
+  void showBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return CustomBottomSheet();
+      },
+    );
+  }
+
   void getListPdfScan() async {
     try {
       final pdfScanList =
@@ -96,16 +105,9 @@ class HomeController extends GetxController {
     Get.back();
   }
 
-  Future<bool> onWillPop() async {
-    final now = DateTime.now();
-    if (currentBackPressTime.value == null ||
-        now.difference(currentBackPressTime.value ?? DateTime.now()) >
-            const Duration(seconds: 2)) {
-      currentBackPressTime.value = now;
-      CommonWidget.toast(CommonConstants.tittleExitApp.tr);
-      return false;
-    }
-    return true;
+  Future<bool> onWillPop(BuildContext context) async {
+    showBottomSheet(context);
+    return false;
   }
 
   void changeTitle(

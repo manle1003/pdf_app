@@ -10,6 +10,7 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import '../../../lang/constants_common.dart';
 import '../../../shared/constants/colors.dart';
+import '../camera_screen/camera_screen.dart';
 import '../components/custom_dialog/custom_dialog.dart';
 import '../components/custom_item_in_home/custom_item_in_home.dart';
 import 'home_controller.dart';
@@ -21,7 +22,7 @@ class HomeScreen extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        return controller.onWillPop();
+        return controller.onWillPop(context);
       },
       child: Scaffold(
         extendBody: true,
@@ -159,22 +160,18 @@ class HomeScreen extends GetView<HomeController> {
             ),
           ),
           PopupMenuItem<String>(
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => CameraPage(),
+              ),
+            ),
             value: 'option1',
             child: Row(
               children: [
                 Icon(Icons.create, color: Colors.green),
                 SizedBox(width: 8),
                 Text('Create scan'),
-              ],
-            ),
-          ),
-          PopupMenuItem<String>(
-            value: 'option1',
-            child: Row(
-              children: [
-                Icon(Icons.manage_search, color: Colors.blue),
-                SizedBox(width: 8),
-                Text('Manage scans'),
               ],
             ),
           ),
@@ -195,6 +192,7 @@ class HomeScreen extends GetView<HomeController> {
             ),
           ),
           PopupMenuItem<String>(
+            onTap: () => controller.showBottomSheet(context),
             value: 'option3',
             child: Row(
               children: [

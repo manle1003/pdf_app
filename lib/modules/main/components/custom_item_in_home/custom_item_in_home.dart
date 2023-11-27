@@ -19,7 +19,10 @@ class PdfScanListTile extends StatelessWidget {
     return ListTile(
       onTap: () => Get.toNamed(
         Routes.SCAN_DETAIL,
-        arguments: pdfScan,
+        arguments: {
+          'pdfScan': pdfScan,
+          'isCheckTab': false,
+        },
       ),
       leading: ClipRRect(
           borderRadius: BorderRadius.circular(6),

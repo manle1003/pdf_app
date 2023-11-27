@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_getx_base/models/save_item_mark_model.dart';
 import 'package:flutter_getx_base/modules/main/home_screen/home_controller.dart';
 import 'package:flutter_getx_base/modules/main/scan_detail_dart/scan_detail_dart_controller.dart';
+import 'package:flutter_getx_base/routes/routes.dart';
 import 'package:flutter_getx_base/shared/constants/colors.dart';
 import 'package:flutter_getx_base/shared/sharepreference.dart';
 import 'package:flutter_getx_base/shared/utils/size_utils.dart';
@@ -174,16 +175,24 @@ class CustomDialog {
                 label: 'PDF',
               ),
               buildIconButtonColumn(
-                onPressed: () {
-                  Share.shareFiles([pdfScan?.filePath ?? ''],
-                      text: 'Great picture');
+                onPressed: () async {
+                  if (File(pdfScan?.filePath ?? '').existsSync()) {
+                    await Share.shareFiles([pdfScan?.filePath ?? ""],
+                        text: 'Check out this image!');
+                  }
+                  Get.back();
                 },
                 icon: Icons.share,
                 iconColor: ColorConstants.nearlyBlue,
                 label: 'Share',
               ),
               buildIconButtonColumn(
-                onPressed: () {},
+                onPressed: () {
+                  Get.toNamed(Routes.SCAN_DETAIL, arguments: {
+                    'pdfScan': pdfScan,
+                    'isCheckTab': true,
+                  });
+                },
                 icon: Icons.document_scanner,
                 iconColor: ColorConstants.orangeColor,
                 label: 'Extract Text',
