@@ -48,7 +48,7 @@ class _CameraPageState extends State<CameraPage> {
                 photoPathBuilder: _photoPathBuilder,
                 videoPathBuilder: _videoPathBuilder,
               ),
-              filter: AwesomeFilter.AddictiveRed,
+              filter: AwesomeFilter.None,
               previewFit: CameraPreviewFit.fitWidth,
               onMediaTap: (mediaCapture) async {
                 File imageFile = File(mediaCapture.filePath);

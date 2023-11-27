@@ -5,6 +5,8 @@ import 'package:flutter_getx_base/modules/main/feed_back/feed_back_binding.dart'
 import 'package:flutter_getx_base/modules/main/feed_back/feed_back_screen.dart';
 import 'package:flutter_getx_base/modules/main/home_screen/home_binding.dart';
 import 'package:flutter_getx_base/modules/main/home_screen/home_screen.dart';
+import 'package:flutter_getx_base/modules/main/scan_detail_dart/scan_detail_dart_binding.dart';
+import 'package:flutter_getx_base/modules/main/scan_detail_dart/scan_detail_dart_page.dart';
 import 'package:flutter_getx_base/modules/main/settings/screen/about_us/about_us_binding.dart';
 import 'package:flutter_getx_base/modules/main/settings/screen/about_us/about_us_screen.dart';
 import 'package:flutter_getx_base/modules/main/settings/screen/app_language/app_language_binding.dart';
@@ -96,6 +98,11 @@ class AppPages {
       name: Routes.ABOUT_US,
       page: () => AboutUsScreen(),
       binding: AboutUsBinding(),
+    ),
+    GetPage(
+      name: Routes.SCAN_DETAIL,
+      page: () => ScanDetailDartPage(),
+      binding: ScanDetailDartBinding(),
     ),
   ];
 }

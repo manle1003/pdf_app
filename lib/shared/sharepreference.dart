@@ -1,6 +1,9 @@
 import 'dart:convert';
+import 'package:flutter_getx_base/models/save_item_mark_model.dart';
 import 'package:flutter_getx_base/models/save_item_pdf_scan_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../models/save_item_pdf_scan_model_by_id.dart';
 
 class SharedPreferencesManager {
   SharedPreferencesManager._privateConstructor();
@@ -169,5 +172,66 @@ class SharedPreferencesManager {
     final prefs = await SharedPreferences.getInstance();
     final indexChangeLanguage = index;
     await prefs.setInt('indexChangeLanguage', indexChangeLanguage);
+  }
+
+  Future<void> saveScanOCRListWithId(
+      List<ScanOCRListWithId> scanOCRListWithIds) async {
+    final prefs = await SharedPreferences.getInstance();
+    final jsonList = scanOCRListWithIds.map((item) => item.toJson()).toList();
+    await prefs.setString('scanOCRListWithId', json.encode(jsonList));
+  }
+
+  Future<List<ScanOCRListWithId>> getScanOCRListWithIds() async {
+    final prefs = await SharedPreferences.getInstance();
+    final scanOCRListWithIdJson = prefs.getString('scanOCRListWithId');
+
+    if (scanOCRListWithIdJson != null) {
+      final List<dynamic> decoded = json.decode(scanOCRListWithIdJson);
+      return decoded.map((item) => ScanOCRListWithId.fromJson(item)).toList();
+    } else {
+      return [];
+    }
+  }
+
+  Future<void> saveWaterMarkList(
+      List<SaveItemWaterMark> saveItemWaterMark) async {
+    final prefs = await SharedPreferences.getInstance();
+    final waterMarkJson =
+        saveItemWaterMark.map((waterMark) => waterMark.toJson()).toList();
+    await prefs.setString('waterMarkList', json.encode(waterMarkJson));
+  }
+
+  Future<List<SaveItemWaterMark>> getWaterMarkListList() async {
+    final prefs = await SharedPreferences.getInstance();
+    final waterMarkListJson = prefs.getString('waterMarkList');
+
+    if (waterMarkListJson != null) {
+      final List<dynamic> decoded = json.decode(waterMarkListJson);
+      return decoded.map((json) => SaveItemWaterMark.fromJson(json)).toList();
+    } else {
+      return [];
+    }
+  }
+
+  Future<void> deleteWaterMarkById(String id) async {
+    final prefs = await SharedPreferences.getInstance();
+    final waterMarkJson = prefs.getString('waterMarkList');
+
+    if (waterMarkJson != null) {
+      final List<dynamic> decoded = json.decode(waterMarkJson);
+      List<SaveItemWaterMark> waterMark =
+          decoded.map((json) => SaveItemWaterMark.fromJson(json)).toList();
+
+      final index = waterMark.indexWhere((warterMark) => warterMark.id == id);
+
+      if (index != -1) {
+        waterMark.removeAt(index);
+
+        final updateWaterMarkList =
+            waterMark.map((qrCode) => qrCode.toJson()).toList();
+        await prefs.setString(
+            'waterMarkList', json.encode(updateWaterMarkList));
+      }
+    }
   }
 }
