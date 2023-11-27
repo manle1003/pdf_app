@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -10,6 +12,7 @@ import 'package:flutter_getx_base/shared/utils/size_utils.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 import '../../../app_controller.dart';
 import '../../../models/save_item_pdf_scan_model_by_id.dart';
@@ -26,7 +29,8 @@ class ScanDetailDartPage extends GetView<ScanDetailDartController> {
   final AppController appController = Get.find();
 
   PrimaryColors get appTheme => ThemeHelper().themeColor();
-  final PdfScan pdfScan = Get.arguments;
+  final PdfScan pdfScan = Get.arguments['pdfScan'];
+  final bool isCheckTab = Get.arguments['isCheckTab'];
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +38,7 @@ class ScanDetailDartPage extends GetView<ScanDetailDartController> {
 
     return DefaultTabController(
       length: 3,
+      initialIndex: isCheckTab ? 1 : 0,
       child: Scaffold(
         backgroundColor: appController.isDarkModeOn.value
             ? ColorConstants.grey800
@@ -99,31 +104,45 @@ class ScanDetailDartPage extends GetView<ScanDetailDartController> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             buildIconButtonColumn(
-              onPressed: () {},
+              onPressed: () {
+                controller.cropImage(
+                  context,
+                  pdfScan,
+                );
+              },
               icon: Icons.crop,
               iconColor: ColorConstants.black,
               label: '',
             ),
             buildIconButtonColumn(
-              onPressed: () async {},
+              onPressed: () {
+                controller.editImage(
+                  context,
+                  pdfScan,
+                );
+              },
               icon: Icons.edit,
               iconColor: ColorConstants.greenLightRewardColor,
               label: '',
             ),
             buildIconButtonColumn(
-              onPressed: () {},
+              onPressed: () async {
+                if (imageFile.existsSync()) {
+                  await Share.shareFiles([imageFile.path],
+                      text: 'Check out this image!');
+                }
+              },
               icon: Icons.share,
               iconColor: ColorConstants.nearlyBlue,
               label: '',
             ),
             buildIconButtonColumn(
-              onPressed: () {},
-              icon: Icons.filter,
-              iconColor: ColorConstants.lightBlueRewardColor,
-              label: '',
-            ),
-            buildIconButtonColumn(
-              onPressed: () {},
+              onPressed: () {
+                controller.showJobDetailModal(
+                  context,
+                  pdfScan,
+                );
+              },
               icon: Icons.more_vert,
               iconColor: ColorConstants.blackColor,
               label: '',
@@ -181,12 +200,21 @@ class ScanDetailDartPage extends GetView<ScanDetailDartController> {
           SizedBox(
             height: 20,
           ),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(6),
-            child: CustomImageView(
-              file: imageFile,
-              height: getSize(400),
-            ),
+          Obx(
+            () {
+              return ClipRRect(
+                borderRadius: BorderRadius.circular(6),
+                child: controller.croppedFilePath != ""
+                    ? CustomImageView(
+                        file: File(controller.croppedFilePath?.value ?? ''),
+                        height: getSize(400),
+                      )
+                    : CustomImageView(
+                        file: imageFile,
+                        height: getSize(400),
+                      ),
+              );
+            },
           ),
         ],
       ),

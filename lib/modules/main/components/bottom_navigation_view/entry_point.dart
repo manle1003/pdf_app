@@ -78,7 +78,7 @@ class _EntryPointState extends State<EntryPoint> with TickerProviderStateMixin {
           });
           return false;
         }
-        return homeController.onWillPop();
+        return homeController.onWillPop(context);
       },
       child: Scaffold(
         extendBody: true,
