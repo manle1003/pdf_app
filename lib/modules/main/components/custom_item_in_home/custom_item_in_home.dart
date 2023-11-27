@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_getx_base/models/save_item_pdf_scan_model.dart';
 import 'package:flutter_getx_base/modules/main/home_screen/home_controller.dart';
+import 'package:flutter_getx_base/routes/app_pages.dart';
 import 'package:flutter_getx_base/shared/widgets/custom_image_view.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -16,6 +17,10 @@ class PdfScanListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     File imageFile = File(pdfScan.filePath);
     return ListTile(
+      onTap: () => Get.toNamed(
+        Routes.SCAN_DETAIL,
+        arguments: pdfScan,
+      ),
       leading: ClipRRect(
           borderRadius: BorderRadius.circular(6),
           child: CustomImageView(

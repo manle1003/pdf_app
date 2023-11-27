@@ -4,26 +4,30 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_getx_base/models/save_item_mark_model.dart';
 import 'package:flutter_getx_base/modules/main/home_screen/home_controller.dart';
+import 'package:flutter_getx_base/modules/main/scan_detail_dart/scan_detail_dart_controller.dart';
 import 'package:flutter_getx_base/shared/constants/colors.dart';
 import 'package:flutter_getx_base/shared/sharepreference.dart';
+import 'package:flutter_getx_base/shared/utils/size_utils.dart';
 import 'package:flutter_getx_base/shared/widgets/custom_image_view.dart';
+import 'package:flutter_getx_base/shared/widgets/input_field.dart';
 import 'package:flutter_getx_base/theme/theme_helper.dart';
 import 'package:get/get.dart';
 import 'package:image_editor_plus/image_editor_plus.dart';
 import 'package:intl/intl.dart';
-import 'package:lottie/lottie.dart';
 import 'package:material_dialogs/material_dialogs.dart';
 import 'package:material_dialogs/widgets/buttons/icon_button.dart';
 import 'package:material_dialogs/widgets/buttons/icon_outline_button.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../../../models/save_item_pdf_scan_model.dart';
 import '../../../../shared/utils/show_dialog_add_group.dart';
 import '../../../../shared/widgets/custom_text_style.dart';
 
 class CustomDialog {
+  static HomeController homeController = Get.find();
+  static ScanDetailDartController scanDetailDartController = Get.find();
+
   static void showMaterialDialog1(
     BuildContext context,
     Function() onPressDelete,
@@ -87,7 +91,6 @@ class CustomDialog {
     );
   }
 
-  static HomeController homeController = Get.find();
   static void showMaterialDialogBottomSheetItem({
     required BuildContext context,
     PdfScan? pdfScan,
@@ -119,7 +122,6 @@ class CustomDialog {
               onPressed: () {
                 CustomDialog.showMaterialDialog1(context, () {
                   homeController.deleteQRCodeById(pdfScan?.id ?? '');
-                  Get.back();
                 });
               },
               icon: Icons.delete,
@@ -215,6 +217,7 @@ class CustomDialog {
                       await SharedPreferencesManager.instance
                           .editPdfScanFilePath(pdfScan?.id ?? '', filePath);
                       homeController.getListPdfScan();
+                      Get.back();
                     }
                   }
                 },
@@ -316,21 +319,56 @@ class CustomDialog {
     );
   }
 
-  static void showMaterialDialog3(BuildContext context) {
+  static void showMaterialDialog3(BuildContext context, PdfScan pdfScan) {
     Dialogs.materialDialog(
       color: Colors.white,
-      msg: 'Congratulations, you won 500 points',
-      title: 'Congratulations',
-      lottieBuilder: Lottie.asset(
-        'assets/cong_example.json',
-        fit: BoxFit.contain,
+      customView: Padding(
+        padding: getPadding(
+          top: 16,
+          left: 16,
+          right: 16,
+        ),
+        child: Column(
+          children: [
+            Text(
+              'Create Water Mark',
+              style: CustomTextStyles.labelGray600Size16Fw500,
+            ),
+            SizedBox(
+              height: 16,
+            ),
+            Form(
+              key: scanDetailDartController.createWaterMarkFormKey,
+              child: InputField(
+                hintText: 'Enter warter mark',
+                controller: scanDetailDartController.createWaterMarkController,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Water mark is required';
+                  }
+                  return null;
+                },
+              ),
+            ),
+          ],
+        ),
       ),
-      dialogWidth: kIsWeb ? 0.3 : null,
       context: context,
       actions: [
         IconsButton(
           onPressed: () {
-            Navigator.of(context).pop();
+            if (scanDetailDartController.createWaterMarkFormKey.currentState!
+                .validate()) {
+              final saveItemWaterMark = SaveItemWaterMark(
+                id: pdfScan.id,
+                dateTime: DateTime.now(),
+                title: scanDetailDartController.createWaterMarkController.text,
+              );
+              scanDetailDartController.saveListWaterMark(
+                context,
+                saveItemWaterMark,
+              );
+            }
           },
           text: 'Claim',
           iconData: Icons.done,
@@ -344,13 +382,7 @@ class CustomDialog {
 
   static void showMaterialDialog4(BuildContext context) {
     Dialogs.bottomMaterialDialog(
-      msg: 'Congratulations, you won 500 points',
-      title: 'Congratulations',
       color: Colors.white,
-      lottieBuilder: Lottie.asset(
-        'assets/images/congratulation.json',
-        fit: BoxFit.contain,
-      ),
       context: context,
       actions: [
         IconsButton(

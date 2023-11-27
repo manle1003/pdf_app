@@ -92,6 +92,8 @@ class HomeController extends GetxController {
   void deleteQRCodeById(String id) {
     SharedPreferencesManager.instance.deletePdfScanById(id);
     getListPdfScan();
+    Get.back();
+    Get.back();
   }
 
   Future<bool> onWillPop() async {
@@ -113,6 +115,8 @@ class HomeController extends GetxController {
           .updateTitleForPdf(id, title.trim());
       titleChange.value = title.trim();
       getListPdfScan();
+      changeTitlePdfScanController.clear();
+      Get.back();
       Get.back();
     }
   }

@@ -17,4 +17,5 @@ abstract class Routes {
   static const FEED_BACK = '/feed_back';
   static const RATING = '/rating';
   static const ABOUT_US = '/about_us';
+  static const SCAN_DETAIL = '/scan_detail';
 }

@@ -86,7 +86,7 @@ class InputField extends StatelessWidget {
         labelText: labelText,
         hintMaxLines: checkSizeTextField ? 3 : 1,
         contentPadding: EdgeInsets.symmetric(
-          vertical: checkSizeTextField ? 100 : 16,
+          vertical: checkSizeTextField ? 100 : 10,
           horizontal: 10,
         ),
         isDense: true,
@@ -97,6 +97,7 @@ class InputField extends StatelessWidget {
         ),
         hintText: hintText,
         hintStyle: TextStyle(
+          fontSize: 14,
           color: appController.isDarkModeOn.value
               ? ColorConstants.white.withOpacity(.6)
               : Colors.grey.withOpacity(0.6),
